@@ -28,9 +28,10 @@ const addProperty = (req, res) => {
     } = req.body;
 
     // Uploaded image
+    // Cloudinary provides the complete image URL in req.file.path
     const image =
         req.file
-            ? req.file.filename
+            ? req.file.path
             : null;
 
     // Required fields
@@ -324,9 +325,10 @@ const updateProperty = (req, res) => {
             const currentImage =
                 results[0].image;
 
+            // Cloudinary provides the complete image URL
             const newImage =
                 req.file
-                    ? req.file.filename
+                    ? req.file.path
                     : currentImage;
 
             const updateQuery = `
